@@ -1,29 +1,30 @@
 export default class Popover {
-  // constructor() {
-  //   this.container = null;
-  // }
-
+  /**
+   * Init
+   */
   init() {
     this.addElements();
-    // this.container.insertAdjacentElement('afterbegin', this.popover);
   }
 
+  /**
+   * Add all elements
+   */
   addElements() {
-    // this.addContainer();
     this.addPopover();
   }
 
-  // addContainer() {
-  //   this.container = document.createElement('div');
-  //   this.container.classList.add('container-content');
-  // }
-
+  /**
+   * Add popover
+   */
   addPopover() {
     this.popover = document.createElement('div');
     this.popover.classList.add('popover');
     this.addPopoverMarkup();
   }
 
+  /**
+   * Add markup for popover
+   */
   addPopoverMarkup() {
     this.popover.innerHTML = `
     <h3 class="popover-title">Popover Title</h3>
@@ -31,6 +32,9 @@ export default class Popover {
     `;
   }
 
+  /**
+   * @return this.popover
+   */
   getPopover() {
     this.init();
 

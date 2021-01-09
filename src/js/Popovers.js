@@ -1,17 +1,36 @@
+/**
+ * @class Popovers
+ */
 export default class Popovers {
+  /**
+   * Add this.elements
+   *
+   * @param {class} elements - Elements
+   */
   constructor(elements) {
     this.elements = elements;
   }
 
+  /**
+   * Init
+   */
   init() {
     this.elements.init();
     this.addListeners();
   }
 
+  /**
+   * Add listeners
+   */
   addListeners() {
     this.elements.content.addEventListener('click', (e) => this.logicTooltip(e));
   }
 
+  /**
+   * Function handler to event
+   *
+   * @param {event} e - Click event
+   */
   logicTooltip(e) {
     e.preventDefault();
 
@@ -28,16 +47,29 @@ export default class Popovers {
     }
   }
 
+  /**
+   * Remove class .button-active
+   */
   resetButtons() {
     const buttons = this.elements.content.querySelectorAll('.button');
     buttons.forEach((e) => e.classList.remove('button-active'));
   }
 
+  /**
+   * Show tooltip
+   *
+   * @param {button} button - active button
+   */
   showTooltip(button) {
     button.classList.add('button-active');
     this.setParamTooltip(button);
   }
 
+  /**
+   * Hide tooltip
+   *
+   * @param {button} button - active button
+   */
   hideTooltip(button) {
     button.classList.remove('button-active');
     this.tooltip.removeAttribute('style');
@@ -45,6 +77,9 @@ export default class Popovers {
     this.clearTooltipClasses();
   }
 
+  /**
+   * Clear tooltip class
+   */
   clearTooltipClasses() {
     const tooltips = this.elements.content.getElementsByClassName('tooltip');
     tooltips.forEach((e) => {
@@ -56,6 +91,11 @@ export default class Popovers {
     });
   }
 
+  /**
+   * Set parameters for tooltip
+   *
+   * @param {button} button - active button
+   */
   setParamTooltip(button) {
     const tooltip = button.nextElementSibling;
     tooltip.appendChild(this.elements.popover);
