@@ -9,9 +9,9 @@ const elements = new Elements(popover);
 const popovers = new Popovers(elements);
 popovers.init();
 
-describe('test Popovers', () => {
-  const buttons = document.querySelectorAll('.button');
+const buttons = document.querySelectorAll('.button');
 
+describe('test Popovers', () => {
   describe('valid', () => {
     test.each([
       [buttons[0]],

@@ -3,7 +3,7 @@ import { fork } from 'child_process';
 
 jest.setTimeout(30000); // default puppeteer timeout
 
-describe('Credit Card Validator form', () => {
+describe('Popovers', () => {
   let browser = null;
   let page = null;
   let server = null;
@@ -21,8 +21,8 @@ describe('Credit Card Validator form', () => {
     });
 
     browser = await puppetteer.launch({
-      headless: false, // show gui
-      slowMo: 250,
+      // headless: false, // show gui
+      // slowMo: 250,
       // devtools: true, // show devTools
     });
     page = await browser.newPage();
@@ -37,20 +37,14 @@ describe('Credit Card Validator form', () => {
     await page.goto(baseUrl);
   });
 
-  describe('valid', async () => {
-    const buttons = await document.querySelectorAll('.button');
+  test('buttons', async () => {
+    await page.goto(baseUrl);
+    const button = await page.$$('.button');
+    await button[0].click();
+    await button[1].click();
+    await button[2].click();
+    await button[3].click();
 
-    test.each([
-      [buttons[0]],
-      [buttons[1]],
-      [buttons[2]],
-      [buttons[3]],
-    ])('%p', async (button) => {
-      await page.goto(baseUrl);
-      await button.click();
-      await page.waitForSelector('.button-active');
-
-      await button.click();
-    });
+    await button[0].click();
   });
 });
